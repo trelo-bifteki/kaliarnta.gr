@@ -27,9 +27,7 @@ export const router = createRouter({
       path: '/search/:keyword',
       name: 'KeywordView',
       component: KeywordView,
-      props: ({
-        params,
-      }) => ({
+      props: ({ params }) => ({
         keyword: params.keyword,
       }),
     } ],

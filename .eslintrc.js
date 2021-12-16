@@ -83,7 +83,12 @@ module.exports = {
     'no-var': 'error',
     'object-curly-newline': [
       'error',
-      'always',
+      {
+        'ObjectExpression': 'always',
+        'ObjectPattern': {
+          'multiline': true,
+        },
+      },
     ],
     'object-curly-spacing': [
       'error',

@@ -15,6 +15,8 @@ export default defineComponent({
 </script>
 <template>
   <div qa-ref="keyword-view">
-    <h2>{{ keyword }}</h2>
+    <h2 qa-ref="keyword-view__title">
+      {{ keyword }}
+    </h2>
   </div>
 </template>
