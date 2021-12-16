@@ -1,5 +1,8 @@
 import SearchView from '@/views/SearchView.vue';
 import SearchForm from '@/components/SearchForm.vue';
+import {
+  router,
+} from '@/plugins/router';
 
 import {
   shallowMount,
@@ -17,15 +20,22 @@ describe('UnderConstruction', () => {
     props: {
       keyword,
     },
+    global: {
+      plugins: [ router ],
+    },
   });
 
-  it('displays root element', () => {
+  it('displays root element', async () => {
+    router.push('/');
+    await router.isReady();
     const wrapper = createWrapper();
     const element = wrapper.find(selectors.root);
     expect(element.exists()).toBe(true);
   });
 
-  it('provides keyword provided', () => {
+  it('provides keyword provided', async () => {
+    router.push('/');
+    await router.isReady();
     const wrapper = createWrapper('test');
     const element = wrapper.findComponent(SearchForm);
     expect(element.attributes('keyword')).toEqual('test');

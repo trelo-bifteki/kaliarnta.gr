@@ -32,5 +32,6 @@ export default defineComponent({
       :keyword="keyword"
       @submit="search"
     />
+    <router-view />
   </div>
 </template>
