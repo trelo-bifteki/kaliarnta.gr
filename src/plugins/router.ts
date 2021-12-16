@@ -7,6 +7,10 @@ import UnderConstruction from '@/views/UnderConstruction.vue';
 import SearchView from '@/views/SearchView.vue';
 import KeywordView from '@/views/KeywordView.vue';
 
+export const routes = {
+  search: 'SearchView',
+}
+
 export const router = createRouter({
   history: createWebHistory(),
   routes: [ {
@@ -15,7 +19,7 @@ export const router = createRouter({
     component: UnderConstruction,
   }, {
     path: '/search',
-    name: 'SearchView',
+    name: routes.search,
     component: SearchView,
     props: ({
       query,

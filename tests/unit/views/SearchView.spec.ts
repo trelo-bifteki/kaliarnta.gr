@@ -25,19 +25,27 @@ describe('UnderConstruction', () => {
     },
   });
 
-  it('displays root element', async () => {
+  const setup = async (keyword?: string) => {
     router.push('/');
     await router.isReady();
-    const wrapper = createWrapper();
+    return createWrapper(keyword);
+  }
+
+  it('displays root element', async () => {
+    const wrapper = await setup();
     const element = wrapper.find(selectors.root);
     expect(element.exists()).toBe(true);
   });
 
   it('provides keyword provided', async () => {
-    router.push('/');
-    await router.isReady();
-    const wrapper = createWrapper('test');
+    const wrapper = await setup('test');
     const element = wrapper.findComponent(SearchForm);
     expect(element.attributes('keyword')).toEqual('test');
+  });
+
+  it('updates keyword after event update:keyword', async () => {
+    const wrapper = await setup();
+    const element = wrapper.findComponent(SearchForm);
+    await element.vm.$emit('update:keyword', 'test');
   });
 });

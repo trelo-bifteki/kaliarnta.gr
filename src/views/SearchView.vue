@@ -7,6 +7,9 @@ import SearchForm from '@/components/SearchForm.vue';
 import {
   SearchFormInput,
 } from '@/types/search-form';
+import {
+  routes,
+} from '@/plugins/router';
 
 export default defineComponent({
   name: 'SearchView',
@@ -19,9 +22,25 @@ export default defineComponent({
       default: '',
     },
   },
+  data() {
+    return {
+      value: '',
+    };
+  },
+  created(): void {
+    this.value = this.keyword;
+  },
   methods: {
     search(data: SearchFormInput): void {
-      console.log(`Search for ${data.keyword}`);
+      this.$router.push({
+        name: routes.search,
+        query: {
+          keyword: data.keyword,
+        },
+      });
+    },
+    updateKeyword(newValue: string): void {
+      this.value = newValue;
     },
   },
 });
@@ -29,7 +48,8 @@ export default defineComponent({
 <template>
   <div qa-ref="search-view">
     <search-form
-      :keyword="keyword"
+      :keyword="value"
+      @update:keyword="updateKeyword"
       @submit="search"
     />
     <router-view />

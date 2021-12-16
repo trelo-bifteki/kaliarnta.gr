@@ -37,4 +37,12 @@ describe('SearchForm', () => {
     const element = inputElement.element as HTMLInputElement;
     expect(element.value).toEqual('example');
   });
+
+  it('emits keyword', async () => {
+    const wrapper = createWrapper();
+    const inputElement = wrapper.find(selectors.inputField);
+    inputElement.setValue('test');
+    await inputElement.trigger('update');
+    expect(wrapper.emitted('update:keyword')).toEqual([ [ 'test' ] ])
+  });
 });

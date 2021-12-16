@@ -11,12 +11,16 @@ export default defineComponent({
       default: '',
     },
   },
-  emits: [ 'submit' ],
+  emits: [ 'submit', 'update:keyword' ],
   methods: {
     submit() {
       this.$emit('submit', {
         keyword: this.keyword,
       });
+    },
+    updateInput(event: InputEvent): void {
+      const target = event.target as HTMLInputElement;
+      this.$emit('update:keyword', target.value);
     },
   },
 });
@@ -34,6 +38,7 @@ export default defineComponent({
       type="text"
       qa-ref="search-form__keyword"
       placeholder="Εύρεση"
+      @input="updateInput"
     >
   </form>
 </template>
