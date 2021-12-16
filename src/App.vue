@@ -2,7 +2,7 @@
   <div :class="$style.app">
     <article :class="$style.appContainer">
       <title-logo :class="$style.appLogo" />
-      <h3>Σύντομα κοντά σας</h3>
+      <router-view />
     </article>
   </div>
 </template>
