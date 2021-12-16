@@ -9,11 +9,15 @@ import {
 
 const selectors = {
   root: qaRef('search-form'),
-  inputField: qaRef('search-form__term'),
+  inputField: qaRef('search-form__keyword'),
 };
 
 describe('SearchForm', () => {
-  const createWrapper = () => shallowMount(SearchForm);
+  const createWrapper = (keyword?: string) => shallowMount(SearchForm, {
+    props: {
+      keyword,
+    },
+  });
 
   it('displays form', () => {
     const wrapper = createWrapper();
@@ -25,5 +29,12 @@ describe('SearchForm', () => {
     const wrapper = createWrapper();
     const inputElement = wrapper.find(selectors.inputField);
     expect(inputElement.exists()).toBe(true);
+  });
+
+  it('contains input field with value', () => {
+    const wrapper = createWrapper('example');
+    const inputElement = wrapper.find(selectors.inputField);
+    const element = inputElement.element as HTMLInputElement;
+    expect(element.value).toEqual('example');
   });
 });

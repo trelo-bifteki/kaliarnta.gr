@@ -1,3 +1,3 @@
 export interface SearchFormInput {
-  term: string;
+  keyword: string;
 }

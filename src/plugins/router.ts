@@ -16,5 +16,8 @@ export const router = createRouter({
     path: '/search',
     name: 'SearchView',
     component: SearchView,
+    props: route => ({
+      keyword: route.query.keyword,
+    }),
   } ],
 });

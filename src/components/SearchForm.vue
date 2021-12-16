@@ -2,21 +2,21 @@
 import  {
   defineComponent,
 } from 'vue';
-import {
-  SearchFormInput,
-} from '@/types/search-form';
 
 export default defineComponent({
   name: 'SearchForm',
-  emits: [ 'submit' ],
-  data(): SearchFormInput {
-    return {
-      term: '',
-    };
+  props: {
+    keyword: {
+      type: String,
+      default: '',
+    },
   },
+  emits: [ 'submit' ],
   methods: {
     submit() {
-      this.$emit('submit', this.$data);
+      this.$emit('submit', {
+        keyword: this.keyword,
+      });
     },
   },
 });
@@ -28,17 +28,18 @@ export default defineComponent({
     @submit.prevent="submit"
   >
     <input
-      id="search-form__term"
-      v-model="term"
-      :class="$style.searchFormTerm"
+      :value="keyword"
+      name="keyword"
+      :class="$style.searchFormKeyword"
       type="text"
-      qa-ref="search-form__term"
+      qa-ref="search-form__keyword"
+      placeholder="Εύρεση"
     >
   </form>
 </template>
 
 <style module>
-.searchFormTerm {
+.searchFormKeyword {
   border: 2px solid #333;
   border-radius: 5px;
   padding: 1rem;
