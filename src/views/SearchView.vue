@@ -2,6 +2,9 @@
 import {
   defineComponent,
 } from 'vue';
+import {
+  apiClient,
+} from '@/services/api';
 
 import SearchForm from '@/components/SearchForm.vue';
 import {
@@ -29,6 +32,7 @@ export default defineComponent({
   },
   created(): void {
     this.value = this.keyword;
+    apiClient.search(this.keyword);
   },
   methods: {
     search(data: SearchFormInput): void {
