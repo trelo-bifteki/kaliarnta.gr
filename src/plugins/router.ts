@@ -6,6 +6,7 @@ import {
 import UnderConstruction from '@/views/UnderConstruction.vue';
 import SearchView from '@/views/SearchView.vue';
 import KeywordView from '@/views/KeywordView.vue';
+import SearchResultsView from '@/views/SearchResultsView.vue';
 
 export const routes = {
   search: 'SearchView',
@@ -28,6 +29,9 @@ export const router = createRouter({
       keyword: params.keyword||query.keyword,
     }),
     children: [ {
+      path: '/search',
+      component: SearchResultsView,
+    }, {
       path: '/search/:keyword',
       name: 'KeywordView',
       component: KeywordView,
