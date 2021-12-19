@@ -2,22 +2,12 @@
 import {
   defineComponent,
 } from 'vue';
-import {
-  apiClient,
-} from '@/services/api';
 
 import SearchForm from '@/components/SearchForm.vue';
-import KeywordPreview from '@/components/KeywordPreview.vue';
 
-import {
-  SearchFormInput,
-} from '@/types/search-form';
-import {
-  routes,
-} from '@/plugins/router';
-import {
-  Keyword,
-} from '@/types/keyword';
+import { SearchFormInput } from '@/types/search-form';
+import { routes } from '@/plugins/router';
+import { Keyword } from '@/types/keyword';
 
 interface SearchViewData {
   value: string;
@@ -27,7 +17,6 @@ interface SearchViewData {
 export default defineComponent({
   name: 'SearchView',
   components: {
-    KeywordPreview,
     SearchForm,
   },
   props: {
@@ -42,15 +31,13 @@ export default defineComponent({
       results: [],
     };
   },
-  async created(): Promise<void> {
+  mounted() {
     this.value = this.keyword;
-    this.results = await apiClient.search(this.keyword);
-    console.log(this.results);
   },
   methods: {
     search(data: SearchFormInput): void {
       this.$router.push({
-        name: routes.search,
+        name: routes.searchResults,
         query: {
           keyword: data.keyword,
         },
@@ -68,11 +55,6 @@ export default defineComponent({
       :keyword="value"
       @update:keyword="updateKeyword"
       @submit="search"
-    />
-    <keyword-preview
-      v-for="result in results"
-      :key="result.keyword"
-      :value="result"
     />
     <router-view />
   </div>
