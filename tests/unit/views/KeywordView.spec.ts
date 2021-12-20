@@ -3,6 +3,8 @@ import {
 } from '@vue/test-utils';
 import { qaRef } from '../mocks';
 import KeywordView from '@/views/KeywordView.vue';
+import { router } from '@/plugins/router';
+import { RouterLink } from 'vue-router';
 
 const selectors = {
   root: qaRef('keyword-view'),
@@ -14,16 +16,25 @@ describe('KeywordView', () => {
     props: {
       keyword,
     },
+    global: {
+      plugins: [ router ],
+    },
   });
 
-  it('renders successully', () => {
-    const wrapper = createWrapper();
+  const setupWrapper = async (keyword = 'test') => {
+    router.push('/');
+    await router.isReady();
+    return createWrapper(keyword);
+  }
+
+  it('renders successully', async () => {
+    const wrapper = await setupWrapper();
     const element = wrapper.find(selectors.root);
     expect(element.exists()).toBe(true);
   });
 
-  it('renders keyword', () => {
-    const wrapper = createWrapper();
+  it('renders keyword', async () => {
+    const wrapper = await setupWrapper();
     const element = wrapper.find(selectors.title);
     expect(element.text()).toBe('test');
   });

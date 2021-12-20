@@ -12,6 +12,7 @@ import { RouteLocationNormalized } from 'vue-router';
 export const routes = {
   search: 'SearchView',
   searchResults: 'SearchResults',
+  keyword: 'KeywordView',
 }
 
 const determineKeyword = ({
@@ -39,7 +40,7 @@ export const router = createRouter({
       props: determineKeyword,
     }, {
       path: '/search/:keyword',
-      name: 'KeywordView',
+      name: routes.keyword,
       component: KeywordView,
       props: ({ params }) => ({
         keyword: params.keyword,

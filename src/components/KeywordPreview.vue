@@ -1,5 +1,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { RouteLocationRaw } from 'vue-router';
+import { routes } from '@/plugins/router';
 
 export default defineComponent({
   name: 'KeywordPreview',
@@ -9,12 +11,25 @@ export default defineComponent({
       required: true,
     },
   },
+  computed: {
+    linkOptions(): RouteLocationRaw {
+      return {
+        name: routes.keyword,
+        params: {
+          keyword: this.value.keyword,
+        },
+      };
+    },
+  },
 });
 </script>
 <template>
-  <div qa-ref="keyword-preview">
+  <router-link
+    :to="linkOptions"
+    qa-ref="keyword-preview"
+  >
     <h2 qa-ref="keyword-preview__title">
       {{ value.keyword }}
     </h2>
-  </div>
+  </router-link>
 </template>

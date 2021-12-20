@@ -26,6 +26,11 @@ export default defineComponent({
       results: [],
     }
   },
+  watch: {
+    async keyword(newValue: string): Promise<void> {
+      this.results = await apiClient.search(newValue);
+    },
+  },
   async mounted(): Promise<void> {
     this.results = await apiClient.search(this.keyword);
   },
