@@ -4,7 +4,6 @@ import {
 import { qaRef } from '../mocks';
 import KeywordView from '@/views/KeywordView.vue';
 import { router } from '@/plugins/router';
-import { RouterLink } from 'vue-router';
 
 const selectors = {
   root: qaRef('keyword-view'),
