@@ -1,11 +1,12 @@
 import axios from 'axios';
 import Axios, { AxiosInstance, AxiosPromise } from 'axios';
 import { Result } from '@/types/search';
+import { Keyword } from '@/types/keyword';
 
 export const instance = Axios.create();
 
 
-class ApiClient {
+export class ApiClient {
   readonly axiosInstance: AxiosInstance;
 
   constructor(_axiosInstance: AxiosInstance) {
@@ -13,12 +14,17 @@ class ApiClient {
   }
 
   async search(keyword: string): Promise<Result[]> {
-    const response = await axios.get<string, AxiosPromise<Result[]>>('/api/search', {
+    const { data } = await axios.get<string, AxiosPromise<Result[]>>('/api/search', {
       params: {
         keyword,
       },
     });
-    return response.data;
+    return data;
+  }
+
+  async get(keyword: string): Promise<Keyword> {
+    const { data } = await axios.get<string, AxiosPromise<Keyword>>(`/api/search/${keyword}`);
+    return data;
   }
 }
 
