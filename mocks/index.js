@@ -1,3 +1,15 @@
+const sampleKeyword = {
+  keyword: 'αβέλω',
+  type: 'verb',
+  translations: [ {
+    keyword: 'κάνω',
+  } ],
+  description: 'Lorem ipsun loretta kenntnis',
+  examples: [ {
+    text: 'θα αβέλω ντουπ όλο τον κόσμο',
+  } ],
+};
+
 module.exports = {
   extendApp: app => {
     app.get('/api/info', (request, response) => {
@@ -7,22 +19,11 @@ module.exports = {
     });
 
     app.get('/api/search', (request, response) => {
-      response.json([ {
-        keyword: 'αβέλω',
-        type: 'verb',
-        translations: [ {
-          keyword: 'κάνω',
-        } ],
-        description: '',
-        examples: [ {
-          text: 'θα αβέλω ντουπ όλο τον κόσμο',
-        } ],
-        references: [],
-      }, {
-        keyword: 'ντουπ',
-        type: 'noun',
-        description: 'πολύ',
-      } ]);
+      response.json([  sampleKeyword ]);
+    });
+
+    app.get('/api/search/:id', (request, response) => {
+      response.json(sampleKeyword);
     });
   },
 }

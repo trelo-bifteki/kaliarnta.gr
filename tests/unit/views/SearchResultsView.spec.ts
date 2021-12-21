@@ -35,6 +35,14 @@ describe('SearchResultsView', () => {
     expect(apiClient.search).toHaveBeenCalledWith('test');
   });
 
+  it('fetches data after updating keyword', async () => {
+    const wrapper = createWrapper();
+    await wrapper.setProps({
+      keyword: 'another',
+    });
+    expect(apiClient.search).toHaveBeenCalledWith('another');
+  });
+
   it.skip('displays a search result', async () => {
     const keyword = createKeyword();
     mockedApiClient.search.mockResolvedValue([ keyword ]);

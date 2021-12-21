@@ -4,6 +4,10 @@ import {
 import { qaRef } from '../mocks';
 import KeywordView from '@/views/KeywordView.vue';
 import { router } from '@/plugins/router';
+import { apiClient } from '@/services/api';
+import { mocked } from 'ts-jest/utils';
+
+jest.mock('@/services/api');
 
 const selectors = {
   root: qaRef('keyword-view'),
@@ -11,6 +15,7 @@ const selectors = {
 };
 
 describe('KeywordView', () => {
+  const mockedApiClient = mocked(apiClient);
   const createWrapper = (keyword = 'test') => shallowMount(KeywordView, {
     props: {
       keyword,
@@ -26,6 +31,10 @@ describe('KeywordView', () => {
     return createWrapper(keyword);
   }
 
+  beforeEach(() => {
+    mockedApiClient.get.mockReset();
+  });
+
   it('renders successully', async () => {
     const wrapper = await setupWrapper();
     const element = wrapper.find(selectors.root);
@@ -36,5 +45,18 @@ describe('KeywordView', () => {
     const wrapper = await setupWrapper();
     const element = wrapper.find(selectors.title);
     expect(element.text()).toBe('test');
+  });
+
+  it('fetches data at init', async () => {
+    await setupWrapper();
+    expect(apiClient.get).toHaveBeenCalledWith('test');
+  });
+
+  it('fetchers data after updating keywowrd', async () => {
+    const wrapper = await setupWrapper();
+    await wrapper.setProps({
+      keyword: 'another',
+    });
+    expect(apiClient.get).toHaveBeenCalledWith('another');
   });
 });
