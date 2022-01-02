@@ -5,6 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "serve:mock": "cross-env MOCK_ENABLED=true vue-cli-service serve",
+    "serve:local" : "cross-env TARGET=http://localhost:7020 vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"

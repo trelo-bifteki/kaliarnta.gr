@@ -2,6 +2,7 @@
 const mocks = require('./mocks');
 
 const isMockEnabled = process.env.MOCK_ENABLED === 'true';
+const target = process.env.TARGET || 'https://www.kaliarnta.gr/';
 
 const devServer = {
   port: 7010,
@@ -17,7 +18,7 @@ if (isMockEnabled) {
 } else {
   devServer.proxy = {
     '/api': {
-      target: 'htts://www.kaliarnta.gr/',
+      target,
     },
   };
 }

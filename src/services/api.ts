@@ -14,7 +14,7 @@ export class ApiClient {
   }
 
   async search(keyword: string): Promise<Result[]> {
-    const { data } = await axios.get<string, AxiosPromise<Result[]>>('/api/search', {
+    const { data } = await axios.get<string, AxiosPromise<Result[]>>('/api/keywords', {
       params: {
         keyword,
       },
@@ -23,7 +23,7 @@ export class ApiClient {
   }
 
   async get(keyword: string): Promise<Keyword> {
-    const { data } = await axios.get<string, AxiosPromise<Keyword>>(`/api/search/${keyword}`);
+    const { data } = await axios.get<string, AxiosPromise<Keyword>>(`/api/keywords/${keyword}`);
     return data;
   }
 }
