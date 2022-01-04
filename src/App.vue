@@ -1,7 +1,7 @@
 <template>
   <div :class="$style.app">
-    <article :class="$style.appContainer">
-      <title-logo :class="$style.appLogo" />
+    <article class="mx-auto">
+      <title-logo class="mx-auto" />
       <router-view />
     </article>
   </div>
@@ -34,14 +34,6 @@ export default defineComponent({
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-}
-
-.appContainer {
-  padding: 1rem;
-}
-
-.appLogo {
-  margin-bottom: 1.5rem;
 }
 
 .appContainer h2 {
