@@ -27,6 +27,7 @@ export default defineComponent({
   <router-link
     :to="linkOptions"
     qa-ref="keyword-preview"
+    class="bg-gray-100 rounded-xl p-8 dark:bg-gray-800 block ring-1"
   >
     <h2 qa-ref="keyword-preview__title">
       {{ value.keyword }}

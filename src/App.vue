@@ -1,7 +1,7 @@
 <template>
-  <div :class="$style.app">
+  <div class="min-h-screen bg-gray-50 py-6 flex flex-col text-center overflow-hidden sm:py-12">
     <article class="mx-auto">
-      <title-logo class="mx-auto" />
+      <title-logo class="app__form" />
       <router-view />
     </article>
   </div>
@@ -22,22 +22,10 @@ export default defineComponent({
   },
 });
 </script>
-
-<style module>
-
-.app {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-               "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
-               "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style>
+.app__form {
+  max-width: 500px;
+  min-width: 100%;
 }
 
-.appContainer h2 {
-  font-size: 2rem;
-  font-weight: 300;
-}
 </style>

@@ -28,25 +28,26 @@ export default defineComponent({
 <template>
   <form
     id="search-form"
+    class="px-8 pt-6 pb-8 mb-4 flex"
     qa-ref="search-form"
     @submit.prevent="submit"
   >
     <input
       :value="keyword"
       name="keyword"
-      :class="$style.searchFormKeyword"
+      class="shadow appearance-none border mr-2
+        rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
       type="text"
       qa-ref="search-form__keyword"
       placeholder="Εύρεση"
       @input="updateInput"
     >
+    <button
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4
+        rounded focus:outline-none focus:shadow-outline"
+      type="submit"
+    >
+      Εύρεση
+    </button>
   </form>
 </template>
-
-<style module>
-.searchFormKeyword {
-  border: 2px solid #333;
-  border-radius: 5px;
-  padding: 1rem;
-}
-</style>
