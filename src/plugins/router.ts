@@ -7,6 +7,7 @@ import UnderConstruction from '@/views/UnderConstruction.vue';
 import SearchView from '@/views/SearchView.vue';
 import KeywordView from '@/views/KeywordView.vue';
 import SearchResultsView from '@/views/SearchResultsView.vue';
+import DictionaryView from '@/views/DictionaryView.vue';
 import { RouteLocationNormalized } from 'vue-router';
 
 export const routes = {
@@ -46,5 +47,10 @@ export const router = createRouter({
         keyword: params.keyword,
       }),
     } ],
+  }, {
+    path: '/dictionary',
+    alias: '/lexicon',
+    name: 'Dictionary',
+    component: DictionaryView,
   } ],
 });

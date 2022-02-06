@@ -1,6 +1,4 @@
-import {
-  shallowMount,
-} from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import { qaRef } from '../mocks';
 import KeywordView from '@/views/KeywordView.vue';
 import { router } from '@/plugins/router';
