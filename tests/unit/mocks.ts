@@ -5,6 +5,9 @@ export const qaRef = (value: string): string => `[qa-ref=${value}]`;
 
 export const createKeyword = (): Keyword => ({
   keyword: 'test',
+  translations: [
+    'translation',
+  ],
 });
 
 export const createPage = <T>(element: T): Page<T> => ({

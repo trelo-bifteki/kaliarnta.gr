@@ -6,6 +6,7 @@ import { createKeyword, qaRef } from '../mocks';
 
 const selectors = {
   root: qaRef('keyword-preview'),
+  translation: qaRef('keyword-preview__translation'),
 };
 
 describe('KeywordPreview', () => {
@@ -19,5 +20,11 @@ describe('KeywordPreview', () => {
     const wrapper = createWrapper();
     const element = wrapper.find(selectors.root);
     expect(element.exists()).toBe(true);
+  });
+
+  it('displays translation', () => {
+    const wrapper = createWrapper();
+    const element = wrapper.find(selectors.translation);
+    expect(element.text()).toEqual('translation');
   });
 });

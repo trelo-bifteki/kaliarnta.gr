@@ -1,4 +1,5 @@
 <template>
+  <header-menu />
   <div class="min-h-screen bg-gray-50 py-6 flex flex-col text-center overflow-hidden sm:py-12">
     <article class="mx-auto">
       <title-logo class="app__form" />
@@ -11,6 +12,7 @@
 import {
   defineComponent,
 } from 'vue';
+import HeaderMenu from '@/components/HeaderMenu.vue';
 import 'reset-css';
 
 import TitleLogo from '@/components/TitleLogo.vue';
@@ -18,6 +20,7 @@ import TitleLogo from '@/components/TitleLogo.vue';
 export default defineComponent({
   name: 'App',
   components: {
+    HeaderMenu,
     TitleLogo,
   },
 });
