@@ -4,10 +4,10 @@ import {
 } from 'vue';
 import KeywordPreview from '@/components/KeywordPreview.vue';
 import { apiClient } from '@/services/api';
-import { Keyword } from '@/types/keyword';
+import { Result } from '@/types/search';
 
 interface SearchResultsViewData {
-  results: Keyword[];
+  results: Result[];
 }
 
 export default defineComponent({

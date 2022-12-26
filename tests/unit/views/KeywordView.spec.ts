@@ -1,4 +1,4 @@
-import { shallowMount } from '@vue/test-utils';
+import { mount, RouterLinkStub } from '@vue/test-utils';
 import { qaRef } from '../mocks';
 import KeywordView from '@/views/KeywordView.vue';
 import { router } from '@/plugins/router';
@@ -14,12 +14,15 @@ const selectors = {
 
 describe('KeywordView', () => {
   const mockedApiClient = mocked(apiClient);
-  const createWrapper = (keyword = 'test') => shallowMount(KeywordView, {
+  const createWrapper = (keyword = 'test') => mount(KeywordView, {
     props: {
       keyword,
     },
     global: {
       plugins: [ router ],
+      stubs: {
+        RouterLink: RouterLinkStub,
+      },
     },
   });
 
